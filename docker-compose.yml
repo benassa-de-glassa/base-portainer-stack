@@ -8,7 +8,7 @@ services:
     environment:
       - NODE_ENV=development
     networks:
-      - app-network
+      - traefik
 
     labels:
       - "traefik.enable=true"
@@ -22,5 +22,5 @@ services:
       - "traefik.docker.network=traefik"
 
 networks:
-  app-network:
-    driver: bridge
+  traefik:
+    external: true
