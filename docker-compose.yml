@@ -3,8 +3,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
     environment:
       - NODE_ENV=development
     networks:
@@ -14,12 +12,12 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.app.tls=true"
       - "traefik.http.routers.app.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.app.rule=Host(`helloworld.fsobs.org`)"
       - "traefik.http.routers.app.entrypoints=websecure"
       - "traefik.http.routers.service=app-service"
       - "traefik.http.services.app-service.loadbalancer.server.port=3000"
-
       - "traefik.docker.network=traefik"
+
+      - "traefik.http.routers.app.rule=Host(`helloworld.fsobs.org`)"
 
 networks:
   traefik:
